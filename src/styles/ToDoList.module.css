@@ -1,0 +1,102 @@
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.title {
+    text-align: center;
+    color: #333;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+}
+
+.listItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.taskText {
+    flex: 1;
+}
+
+.taskText.completed {
+    text-decoration: line-through;
+}
+
+.botaoRemoveTask, .botaoEditTask, .botaoSaveTask, .botaoCompleteTask, .botaoUncompleteTask {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+.botaoRemoveTask:hover, .botaoEditTask, .botaoSaveTask, .botaoCompleteTask, .botaoUncompleteTask {
+    background-color: #c0392b;
+}
+
+.input {
+    width: calc(100% - 22px);
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.botaoAddTask {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.botaoAddTask:hover {
+    background-color: #27ae60;
+}
+
+.botaoCompleteTask {
+    background-color: #2ecc71;
+}
+
+.botaoCompleteTask:hover {
+    background-color: #27ae60;
+}
+
+.botaoUncompleteTask {
+    background-color: #e74c3c;
+}
+
+.botaoUncompleteTask:hover {
+    background-color: #c0392b;
+}
+
+.botaoSaveTask {
+    background-color: #3498db;
+    margin-left: 0;
+}
+
+.botaoSaveTask:hover {
+    background-color: #2980b9;
+}
+
+.botaoEditTask {
+    background-color: #f39c12;
+}
+
+.botaoEditTask:hover {
+    background-color: #e67e22;
+}
