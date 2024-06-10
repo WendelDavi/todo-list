@@ -1,0 +1,42 @@
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.title {
+    text-align: center;
+    color: #333;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+}
+
+.listItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.taskText {
+    flex: 1;
+    text-decoration: line-through;
+    color: #888;
+}
+
+.botaoUndoTask {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.botaoUndoTask:hover {
+    background-color: #c0392b;
+}
