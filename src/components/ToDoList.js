@@ -1,73 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import styles from './styles/ToDoList.module.css'
 import CompleteTasks from './CompleteTasks';
+import { TaskContext } from '../TaskContext'
 
-const ToDoList = (props) => {
-    const [incompleteTasks, setIncompleteTasks] = useState(props.tasks.map(task => ({ text: task, completed: false })));
-    const [newTask, setNewTask] = useState('');
-    const [editIndex, setEditIndex] = useState(null);
-    const [editTask, setEditTask] = useState('');
-    const [completedTasks, setCompletedTasks] = useState([]);
+const ToDoList = () => {
+    const { incompleteTasks, completedTasks, editIndex, editingTask, setEditingTask, newTask, setNewTask, addTask, toggleTask, undoTask, removeTask, editTask, saveTask } = useContext(TaskContext)
 
-    useEffect(() => {
-        const storedIncompleteTasks = JSON.parse(localStorage.getItem('incompleteTasks')) || [];
-        const storedCompletedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
-        
-        setIncompleteTasks(storedIncompleteTasks);
-        setCompletedTasks(storedCompletedTasks);
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('incompleteTasks', JSON.stringify(incompleteTasks));
-        localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
-    }, [incompleteTasks, completedTasks]);
 
     const handleAddTask = () => {
-        if (newTask.trim()) {
-            setIncompleteTasks([...incompleteTasks, { text: newTask, completed: false }])
-            setNewTask('')
-        }
-    }
-
-    const handleToggleTask = (index) => {
-        const taskToToggle = incompleteTasks[index];
-        taskToToggle.completed = !taskToToggle.completed;
-
-        if (taskToToggle.completed) {
-            setCompletedTasks([...completedTasks, taskToToggle]);
-            setIncompleteTasks(incompleteTasks.filter((_, i) => i !== index));
-        } else {
-            setIncompleteTasks([...incompleteTasks, taskToToggle]);
-            setCompletedTasks(completedTasks.filter((_, i) => i !== index));
-        }
+        addTask(newTask);
+        setNewTask('');
     };
-
-    const handleUndoTask = (index) => {
-        const taskToUndo = completedTasks[index];
-        taskToUndo.completed = false;
-
-        setCompletedTasks(completedTasks.filter((_, i) => i !== index));
-        setIncompleteTasks([...incompleteTasks, taskToUndo]);
-    };
-
-    const handleRemoveTask = (index) => {
-        const newTasks = incompleteTasks.filter((_, i) => i !== index)
-        setIncompleteTasks(newTasks)
-    }
-
-    const handleEditTask = (index) => {
-        setEditIndex(index);
-        setEditTask(incompleteTasks[index].text)
-    }
-
-    const handleSaveTask = (index) => {
-        const newTasks = [...incompleteTasks];
-        newTasks[index].text = editTask;
-        setIncompleteTasks(newTasks);
-        setEditIndex(null);
-        setEditTask('');
-    }
-
 
     return (
         <div className={styles.container}>
@@ -80,21 +23,21 @@ const ToDoList = (props) => {
                                 <input
                                     className={styles.input}
                                     type="text"
-                                    value={editTask}
-                                    onChange={(e) => setEditTask(e.target.value)}
+                                    value={editingTask}
+                                    onChange={(e) => setEditingTask(e.target.value)}
                                 />
-                                <button className={styles.botaoSaveTask} onClick={() => handleSaveTask(index)}>Salvar</button>
+                                <button className={styles.botaoSaveTask} onClick={() => saveTask(index)}>Salvar</button>
                             </>
                         ) : (
                             <>
                                 <span className={`${styles.taskText} ${task.completed ? styles.completed : ''}`}>{task.text}</span>
                                 {!task.completed ? (
-                                    <button className={styles.botaoCompleteTask} onClick={() => handleToggleTask(index)}>Concluir</button>
+                                    <button className={styles.botaoCompleteTask} onClick={() => toggleTask(index)}>Concluir</button>
                                 ) : (
-                                    <button className={styles.botaoUncompleteTask} onClick={() => handleToggleTask(index)}>Desfazer</button>
+                                    <button className={styles.botaoUncompleteTask} onClick={() => toggleTask(index)}>Desfazer</button>
                                 )}
-                                <button className={styles.botaoEditTask} onClick={() => handleEditTask(index)}>Editar</button>
-                                <button className={styles.botaoRemoveTask} onClick={() => handleRemoveTask(index)}>Remover</button>
+                                <button className={styles.botaoEditTask} onClick={() => editTask(index)}>Editar</button>
+                                <button className={styles.botaoRemoveTask} onClick={() => removeTask(index)}>Remover</button>
                             </>
                         )}
                     </li>
@@ -108,7 +51,7 @@ const ToDoList = (props) => {
                 placeholder="Nova Tarefa"
             />
             <button className={styles.botaoAddTask} onClick={handleAddTask}>Adicionar Tarefa</button>
-            {completedTasks.length > 0 && <CompleteTasks tasks={completedTasks} onUndoTask={handleUndoTask} />}
+            {completedTasks.length > 0 && <CompleteTasks tasks={completedTasks} onUndoTask={undoTask} />}
         </div >
     )
 }
