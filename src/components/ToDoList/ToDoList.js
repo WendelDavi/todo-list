@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import styles from './styles/ToDoList.module.css'
-import CompleteTasks from './CompleteTasks';
-import { TaskContext } from '../contexts/TaskContext'
+import styles from './ToDoList.module.css'
+import CompleteTasks from '../CompleteTasks/CompleteTasks';
+import { TaskContext } from '../../contexts/TaskContext'
 
 const ToDoList = () => {
     const { incompleteTasks, completedTasks, editIndex, editingTask, setEditingTask, newTask, setNewTask, addTask, toggleTask, undoTask, removeTask, editTask, saveTask } = useContext(TaskContext)

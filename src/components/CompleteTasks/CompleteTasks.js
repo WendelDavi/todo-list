@@ -1,10 +1,10 @@
 import React from 'react'
-import styles from './styles/CompleteTasks.module.css'
+import styles from './CompleteTasks.module.css'
 
 const CompleteTasks = ({ tasks, onUndoTask }) => {
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>Tarefas Concluídas</h2>
+            <h1 className={styles.title}>Tarefas Concluídas</h1>
             <ul className={styles.list}>
                 {tasks.map((task, index) => (
                     <li key={index} className={styles.listItem}>
