@@ -12,6 +12,12 @@ const ToDoList = () => {
         setNewTask('');
     };
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleAddTask();
+        }
+    }
+
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>Tarefas</h2>
@@ -48,6 +54,7 @@ const ToDoList = () => {
                 type="text"
                 value={newTask}
                 onChange={(e) => setNewTask(e.target.value)}
+                onKeyDown={handleKeyDown}
                 placeholder="Nova Tarefa"
             />
             <button className={styles.botaoAddTask} onClick={handleAddTask}>Adicionar Tarefa</button>
