@@ -4,7 +4,7 @@ import styles from './CompleteTasks.module.css'
 const CompleteTasks = ({ tasks, onUndoTask }) => {
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Tarefas Concluídas</h1>
+            <h2 className={styles.title}>Concluídas</h2>
             <ul className={styles.list}>
                 {tasks.map((task, index) => (
                     <li key={index} className={styles.listItem}>

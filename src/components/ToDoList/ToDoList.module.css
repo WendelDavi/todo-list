@@ -1,8 +1,16 @@
 .container {
-    max-width: 400px;
-    margin: 0 auto;
-    text-align: left;
-}
+    background-color: #ffff;
+    width: 80%;
+    max-width: 300px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
 .title {
     text-align: center;

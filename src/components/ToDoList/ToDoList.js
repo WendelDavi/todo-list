@@ -14,7 +14,7 @@ const ToDoList = () => {
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Lista To-Do</h1>
+            <h2 className={styles.title}>Tarefas</h2>
             <ul className={styles.list}>
                 {incompleteTasks.map((task, index) => (
                     <li className={styles.listItem} key={index}>
